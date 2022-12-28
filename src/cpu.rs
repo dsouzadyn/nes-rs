@@ -13,6 +13,8 @@ pub struct CPU {
 
 #[derive(Debug)]
 pub enum AddressingMode {
+    Accumulator,
+    Relative,
     Immediate,
     ZeroPage,
     ZeroPageX,
@@ -153,7 +155,9 @@ impl CPU {
                 deref
             }
 
-            AddressingMode::NoneAddressing => {
+            AddressingMode::Accumulator
+            | AddressingMode::Relative
+            | AddressingMode::NoneAddressing => {
                 panic!("mode {:?} is not supported", mode);
             }
         }
